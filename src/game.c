@@ -36,7 +36,7 @@ static int get_default_score(Game *game, int frame_index) {
 }
 
 int get_score(Game *game) {
-	int score = 0;
+    int score = 0;
     int frame_index = 0;
 
     for (int frame = 0; frame < 10; frame++) {
