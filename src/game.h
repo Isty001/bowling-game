@@ -2,16 +2,10 @@
 #define GAME_H
 
 
-typedef struct {
-	int current;
-	int *rolls;
-} Game;
+void new_game(void);
 
+void roll(int pins);
 
-Game *create_game(void);
-
-void roll(Game *game, int pins);
-
-int get_score(Game *game);
+int get_score();
 
 #endif
