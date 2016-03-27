@@ -6,6 +6,6 @@ void new_game(void);
 
 void roll(int pins);
 
-int get_score();
+int get_score(void);
 
 #endif
