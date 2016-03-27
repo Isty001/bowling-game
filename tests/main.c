@@ -1,6 +1,4 @@
 #include <minunit.h>
-#include <malloc.h>
-#include <stdio.h>
 #include "../src/game.h"
 
 

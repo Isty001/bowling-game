@@ -1,4 +1,3 @@
-#include <malloc.h>
 #include <stdbool.h>
 #include <string.h>
 #include "game.h"
@@ -12,15 +11,6 @@ typedef struct {
 static Game game;
 
 
-void new_game(void) {
-    game.current = 0;
-    memset(game.rolls, 0, sizeof(game.rolls));
-}
-
-void roll(int pins) {
-	game.rolls[game.current++] = pins;
-}
-
 static bool is_strike(int frame_index) {
 	return game.rolls[frame_index] == 10;
 }
@@ -29,16 +19,25 @@ static bool is_spare(int frame_index) {
 	return game.rolls[frame_index] + game.rolls[frame_index + 1] == 10;
 }
 
-static int get_strike_score(int frame_index) {
-    return 10 + game.rolls[frame_index + 1] + game.rolls[frame_index + 2];
-}
-
 static int get_spare_score(int frame_index) {
 	return 10 + game.rolls[frame_index + 2];
 }
 
+static int get_strike_score(int frame_index) {
+    return game.rolls[frame_index + 1] + get_spare_score(frame_index);
+}
+
 static int get_default_score(int frame_index) {
 	return game.rolls[frame_index] + game.rolls[frame_index + 1];
+}
+
+void new_game(void) {
+    game.current = 0;
+    memset(game.rolls, 0, sizeof(game.rolls));
+}
+
+void roll(int pins) {
+    game.rolls[game.current++] = pins;
 }
 
 int get_score(void) {
